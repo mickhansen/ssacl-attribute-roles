@@ -19,4 +19,32 @@ var ssaclAttributeRoles = require('ssacl-attribute-roles')
 
 ssaclAttributeRoles(sequelize);
 ssaclAttributeRoles(User);
+
+User = sequelize.define('user', {
+  email: {
+    type: Sequelize.STRING,
+    roles: {
+      admin: {get: true},
+      self: true
+    }
+  },
+  password: {
+    type: Sequelize.STRING,
+    roles: false
+  },
+  rank: {
+    type: Sequelize.STRING,
+    roles: {
+      self: {set: false, get: true}
+      admin: true
+    }
+  }
+});
+
+user.get(); // Will never include email or password
+user.get({role: 'admin'}); // Will include email but not password
+user.get({raw: true}); // Ignores roles, will include all
+
+user.set({rank: 'UBER'}, {role: 'self'||undefined}); // Will be ignored
+user.set({rank: 'UBER'}, {role: 'admin'}); // Will be set
 ```
