@@ -13,3 +13,10 @@ cache:
 
 script:
   - "npm test"
+
+addons:
+  code_climate:
+    repo_token: 80a6507ed69ee93f730701c85a6e9d55e6fcb196226a2ce6874cc6c5f4a9cb11
+
+after_script:
+  - cat coverage/lcov.info | codeclimate
