@@ -1,3 +1,5 @@
+"use strict";
+
 var ssaclAttributeRoles = require('../lib')
   , expect = require('expect.js')
   , Sequelize = require('sequelize')

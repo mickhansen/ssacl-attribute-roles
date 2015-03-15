@@ -4,7 +4,7 @@
   "description": "Simple attribute roles/acl for Sequelize",
   "main": "lib/index.js",
   "scripts": {
-    "test": "./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha -- -R spec"
+    "test": " ./node_modules/.bin/jshint lib/ test/ && ./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha -- -R spec"
   },
   "repository": {
     "type": "git",
@@ -28,6 +28,7 @@
   "devDependencies": {
     "expect.js": "^0.3.1",
     "istanbul": "^0.3.7",
+    "jshint": "^2.6.3",
     "mocha": "^2.2.1",
     "sequelize": "^2.0.4",
     "sqlite3": "^3.0.5"
