@@ -1,0 +1,35 @@
+{
+  "name": "ssacl-attribute-roles",
+  "version": "0.0.1",
+  "description": "Simple attribute roles/acl for Sequelize",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "./node_modules/.bin/mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mickhansen/ssacl-attribute"
+  },
+  "keywords": [
+    "sequelize",
+    "acl",
+    "roles",
+    "attributes",
+    "scoping",
+    "context",
+    "whitelisting"
+  ],
+  "author": "Mick Hansen <maker@mhansen.io>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mickhansen/ssacl-attribute-roles/issues"
+  },
+  "homepage": "https://github.com/mickhansen/ssacl-attribute-roles",
+  "devDependencies": {
+    "expect.js": "^0.3.1",
+    "istanbul": "^0.3.7",
+    "mocha": "^2.2.1",
+    "sequelize": "^2.0.4",
+    "sqlite3": "^3.0.5"
+  }
+}
