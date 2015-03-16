@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/mickhansen/ssacl-attribute-roles.svg?branch=master)](https://travis-ci.org/mickhansen/ssacl-attribute-roles) [![Test Coverage](https://codeclimate.com/github/mickhansen/ssacl-attribute-roles/badges/coverage.svg)](https://codeclimate.com/github/mickhansen/ssacl-attribute-roles)
 
-Simple attribute roles/ACL for Sequelize
+Simple attribute whitelisting/blacklisting with roles for Sequelize
 
 ## Install
 
