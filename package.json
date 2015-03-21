@@ -1,7 +1,7 @@
 {
   "name": "ssacl-attribute-roles",
   "version": "0.0.1",
-  "description": "Simple attribute roles/acl for Sequelize",
+  "description": "Simple attribute whitelisting/blacklisting with roles for Sequelize",
   "main": "lib/index.js",
   "scripts": {
     "test": " ./node_modules/.bin/jshint lib/ test/ && ./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha -- -R spec"
