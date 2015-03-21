@@ -37,7 +37,7 @@ describe('get', function () {
     expect(instance.get('attr1', {role: Math.random().toString()})).to.be.ok();
   });
 
-  it('should include not attributes with roles: false or roles: {}', function () {
+  it('should not include attributes with roles: false or roles: {}', function () {
     var Model = sequelize.define('model', {
         attr1: Sequelize.STRING,
         attr2: {
@@ -79,6 +79,7 @@ describe('get', function () {
     expect(values.attr3).to.be.ok();
 
     expect(instance.get('attr2')).not.to.be.ok();
+
     expect(instance.get('attr2', {raw: true})).to.be.ok();
     expect(instance.get('attr3', {role: Math.random().toString()})).not.to.be.ok();
   });
@@ -139,5 +140,65 @@ describe('get', function () {
     expect(values.attr1).not.to.be.ok();
     expect(values.attr2).not.to.be.ok();
     expect(values.attr3).to.be.ok();
+  });
+
+  it('should work with includes', function () {
+    var User = sequelize.define('user', {
+      companyId: {
+        type: Sequelize.INTEGER,
+        roles: {
+          system: true
+        }
+      },
+      email: {
+        type: Sequelize.STRING,
+        roles: {
+          self: true
+        }
+      },
+      password: {
+        type: Sequelize.STRING,
+        roles: false
+      }
+    });
+
+    var Company = sequelize.define('company', {
+      price: {
+        type: Sequelize.FLOAT,
+        roles: {
+          admin: true
+        }
+      },
+      name: Sequelize.STRING
+    });
+
+    ssaclAttributeRoles(User);
+    ssaclAttributeRoles(Company);
+
+    User.belongsTo(Company, {foreignKey: 'companyId'});
+
+    var user = User.build({
+      id: 12,
+      companyId: 14,
+      email: Math.random().toString(),
+      password: Math.random().toString(),
+      company: {
+        id: 14,
+        price: Math.random(),
+        name: Math.random().toString()
+      }
+    }, {
+      role: 'system',
+      include: [Company]
+    });
+
+    var values = user.get({role: 'self'});
+
+    expect(values.companyId).not.to.be.ok();
+    expect(values.email).to.be.ok();
+    expect(values.password).not.to.be.ok();
+    expect(values.company).to.be.ok();
+    expect(values.company.name).to.be.ok();
+    expect(values.company.price).not.to.be.ok();
   });
 });
