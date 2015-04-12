@@ -1,8 +1,10 @@
-# ssacl attribute roles
+# ssacl: attribute roles
 
 [![Build Status](https://travis-ci.org/mickhansen/ssacl-attribute-roles.svg?branch=master)](https://travis-ci.org/mickhansen/ssacl-attribute-roles) [![Test Coverage](https://codeclimate.com/github/mickhansen/ssacl-attribute-roles/badges/coverage.svg)](https://codeclimate.com/github/mickhansen/ssacl-attribute-roles)
 
 Simple attribute whitelisting/blacklisting with roles for Sequelize
+
+_A part of [ssacl](https://github.com/mickhansen/ssacl) but can be used standalone aswell_
 
 ## Install
 
