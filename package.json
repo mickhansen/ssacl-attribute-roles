@@ -1,6 +1,6 @@
 {
   "name": "ssacl-attribute-roles",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Simple attribute whitelisting/blacklisting with roles for Sequelize",
   "main": "lib/index.js",
   "scripts": {
