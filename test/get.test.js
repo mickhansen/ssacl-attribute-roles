@@ -188,7 +188,7 @@ describe('get', function () {
         name: Math.random().toString()
       }
     }, {
-      role: { system: true },
+      role: 'system',
       include: [Company]
     });
 
