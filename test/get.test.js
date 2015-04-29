@@ -200,5 +200,14 @@ describe('get', function () {
     expect(values.company).to.be.ok();
     expect(values.company.name).to.be.ok();
     expect(values.company.price).not.to.be.ok();
+
+    values = user.get({role: 'admin'});
+
+    expect(values.companyId).not.to.be.ok();
+    expect(values.email).not.to.be.ok();
+    expect(values.password).not.to.be.ok();
+    expect(values.company).to.be.ok();
+    expect(values.company.name).to.be.ok();
+    expect(values.company.price).to.be.ok();
   });
 });
