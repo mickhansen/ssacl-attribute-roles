@@ -210,4 +210,35 @@ describe('get', function () {
     expect(values.company.name).to.be.ok();
     expect(values.company.price).to.be.ok();
   });
+
+  it('should work with getters', function () {
+    var Account = sequelize.define('Account', {
+      active: {
+        type: Sequelize.INTEGER,
+        get: function() {
+          return !!this.getDataValue('active');
+        },
+        set: function(value) {
+          this.setDataValue('active', value ? 1 : 0);
+        },
+        roles: {
+          admin: true
+        }
+      }
+    });
+
+    ssaclAttributeRoles(Account);
+
+    var account = Account.build({
+      active: true
+    }, {
+      role: 'admin'
+    });
+
+    var values = account.get({role: 'admin'});
+
+    expect(values.active).to.equal(true);
+
+    expect(account.get('active', {role: 'admin'})).to.equal(true);
+  });
 });
