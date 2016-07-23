@@ -37,6 +37,30 @@ describe('get', function () {
     expect(instance.get('attr1', {role: Math.random().toString()})).to.be.ok();
   });
 
+  it('should include all attributes when no roles are specified to get', function(){
+    var Model = sequelize.define('model', {
+        attr1: Sequelize.STRING,
+        attr2: {
+          type: Sequelize.STRING,
+          roles: false
+        }
+      })
+      , instance
+      , values;
+
+    ssaclAttributeRoles(Model);
+
+    instance = Model.build({
+      attr1: Math.random().toString(),
+      attr2: Math.random().toString()
+    });
+
+    values = instance.get();
+
+    expect(values.attr1).to.be.ok();
+    expect(values.attr2).to.be.ok();
+  });
+
   it('should not include attributes with roles: false or roles: {}', function () {
     var Model = sequelize.define('model', {
         attr1: Sequelize.STRING,
@@ -60,27 +84,20 @@ describe('get', function () {
       attr3: Math.random().toString()
     });
 
-    values = instance.get();
-
-    expect(values.attr1).to.be.ok();
-    expect(values.attr2).not.to.be.ok();
-    expect(values.attr3).not.to.be.ok();
-
     values = instance.get({role: Math.random().toString()});
 
     expect(values.attr1).to.be.ok();
     expect(values.attr2).not.to.be.ok();
     expect(values.attr3).not.to.be.ok();
 
-    values = instance.get({raw: true});
+    values = instance.get();
     
     expect(values.attr1).to.be.ok();
     expect(values.attr2).to.be.ok();
     expect(values.attr3).to.be.ok();
 
-    expect(instance.get('attr2')).not.to.be.ok();
-
-    expect(instance.get('attr2', {raw: true})).to.be.ok();
+    expect(instance.get('attr1', {role: Math.random().toString()})).to.be.ok();
+    expect(instance.get('attr2', {role: Math.random().toString()})).not.to.be.ok();
     expect(instance.get('attr3', {role: Math.random().toString()})).not.to.be.ok();
   });
 

@@ -43,9 +43,8 @@ User = sequelize.define('user', {
   }
 });
 
-user.get(); // Will never include email or password
+user.get(); // Ignores roles, will include all
 user.get({role: 'admin'}); // Will include email but not password
-user.get({raw: true}); // Ignores roles, will include all
 
 user.set({rank: 'UBER'}, {role: 'self'||undefined}); // Will be ignored
 user.set({rank: 'UBER'}, {role: 'admin'}); // Will be set
