@@ -26,8 +26,9 @@ User = sequelize.define('user', {
   email: {
     type: Sequelize.STRING,
     roles: {
-      admin: {get: true},
-      self: true
+      default: 'client',
+      system: {get: true},
+      client: true
     }
   },
   password: {
@@ -37,16 +38,17 @@ User = sequelize.define('user', {
   rank: {
     type: Sequelize.STRING,
     roles: {
-      self: {set: false, get: true}
-      admin: true
+      default: 'client',
+      client: {set: false, get: true}
+      system: true
     }
   }
 });
 
-user.get(); // Will never include email or password
-user.get({role: 'admin'}); // Will include email but not password
-user.get({raw: true}); // Ignores roles, will include all
+user.get(); // Applies default roles and include all the rest
+user.get({role: 'system'}); // Will include email and rank but not password
 
-user.set({rank: 'UBER'}, {role: 'self'||undefined}); // Will be ignored
-user.set({rank: 'UBER'}, {role: 'admin'}); // Will be set
+user.set({rank: 'UBER'}, {role: 'client'}); // Will be ignored
+user.set({rank: 'UBER'}, {role: 'system'}); // Will be set
+user.set({rank: 'UBER'}); // Will be ignored, default is client
 ```
