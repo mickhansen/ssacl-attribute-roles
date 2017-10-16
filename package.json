@@ -30,7 +30,7 @@
     "istanbul": "^0.3.7",
     "jshint": "^2.6.3",
     "mocha": "^2.2.1",
-    "sequelize": "^2.1.1",
+    "sequelize": "^4.14.0",
     "sqlite3": "^3.0.5"
   }
 }
