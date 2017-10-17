@@ -32,5 +32,8 @@
     "mocha": "^2.2.1",
     "sequelize": "^4.14.0",
     "sqlite3": "^3.0.5"
+  },
+  "peerDependencies": {
+    "sequelize": "4.x"
   }
 }
