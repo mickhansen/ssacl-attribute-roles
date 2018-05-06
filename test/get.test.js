@@ -58,7 +58,7 @@ describe('get', function () {
       attr1: Math.random().toString(),
       attr2: Math.random().toString(),
       attr3: Math.random().toString()
-    });
+    }, { raw: true });
 
     values = instance.get();
 
@@ -73,7 +73,7 @@ describe('get', function () {
     expect(values.attr3).not.to.be.ok();
 
     values = instance.get({raw: true});
-    
+
     expect(values.attr1).to.be.ok();
     expect(values.attr2).to.be.ok();
     expect(values.attr3).to.be.ok();
@@ -121,7 +121,7 @@ describe('get', function () {
       attr1: Math.random().toString(),
       attr2: Math.random().toString(),
       attr3: Math.random().toString()
-    });
+    }, { raw: true });
 
     expect(instance.get('attr1', {role: 'rolea'})).to.be.ok();
     expect(instance.get('attr1', {role: 'roleb'})).not.to.be.ok();
@@ -188,6 +188,7 @@ describe('get', function () {
         name: Math.random().toString()
       }
     }, {
+      raw: true,
       role: 'system',
       include: [Company]
     });
